@@ -10,10 +10,14 @@ public class Gun : MonoBehaviour
     [Header("Projectile")]
     public GameObject projectile;
     public GameObject projectileSpawn;
-    public float velocity;
 
-    [Header("Player")]
+    [Header("Objects")]
     public GameObject player;
+
+    [Header("Variables")]
+    public float velocity;
+    public float cooldown;
+    public float counter;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +25,19 @@ public class Gun : MonoBehaviour
         inputManager.RegisterAction(InputManager.Keys.mouse0, Fire, GetInstanceID());
     }
 
+    public void Update()
+    {
+        counter += Time.deltaTime;
+        
+    }
+
     public void Fire()
     {
-        var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().AddForce(player.transform.forward * velocity);
+        if (counter >= cooldown)
+        {
+            var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
+            counter = 0f;
+        }
     }
 }

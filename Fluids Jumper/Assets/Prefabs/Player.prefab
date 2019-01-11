@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11951799549961449}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.24099034, y: -0, z: -0, w: 0.9705275}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32,8 +32,8 @@ Transform:
   - {fileID: 2573500228140335239}
   - {fileID: 4880971584112859638}
   - {fileID: 5296496517269387181}
-  m_Father: {fileID: 2753755692739003210}
-  m_RootOrder: 3
+  m_Father: {fileID: 2753755691375084982}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &555587507
 MonoBehaviour:
@@ -51,8 +51,11 @@ MonoBehaviour:
   projectile: {fileID: 6220624238150441375, guid: c85e401b674d15740918a5544c126bf9,
     type: 3}
   projectileSpawn: {fileID: 2468260891475889561}
-  velocity: 10
   player: {fileID: 2753755692739003212}
+  camera: {fileID: 2753755691375084982}
+  velocity: 10
+  cooldown: 0.25
+  counter: 0
 --- !u!1 &1015898681940363198
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +67,6 @@ GameObject:
   - component: {fileID: 8696892037908417988}
   - component: {fileID: 4483661497983954990}
   - component: {fileID: 8368138188809629813}
-  - component: {fileID: 6412463773189063266}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -131,19 +133,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &6412463773189063266
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015898681940363198}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1057666704386773610
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +144,6 @@ GameObject:
   - component: {fileID: 4880971584112859638}
   - component: {fileID: 8588112156314058252}
   - component: {fileID: 451733407502226739}
-  - component: {fileID: 624940743964607244}
   m_Layer: 0
   m_Name: Grip2
   m_TagString: Untagged
@@ -222,20 +210,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &624940743964607244
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1057666704386773610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &1867398785748250876
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +242,7 @@ Transform:
   - {fileID: 5960619842853978449}
   - {fileID: 8696892037908417988}
   m_Father: {fileID: 2753755692739003210}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2468260891475889561
 GameObject:
@@ -328,7 +302,8 @@ Transform:
   m_LocalRotation: {x: 0.24099034, y: -0, z: -0, w: 0.9705275}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4864608460921107318}
   m_Father: {fileID: 2753755692739003210}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 27.89, y: 0, z: 0}
@@ -549,7 +524,6 @@ Transform:
   - {fileID: 2753755691375084982}
   - {fileID: 2753755691852893164}
   - {fileID: 2753755692860179318}
-  - {fileID: 4864608460921107318}
   - {fileID: 3852526793032927217}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -599,10 +573,11 @@ MonoBehaviour:
   myTransform: {fileID: 2753755692739003210}
   mainCamTransform: {fileID: 2753755691375084982}
   rb: {fileID: 2753755692739003211}
-  cameraOffset: {x: 0, y: 2.5, z: -3}
+  cameraOffset: {x: 0, y: 1, z: 0}
   movementSpeed: 5
   jumpForce: 20
   turnSpeed: 90
+  view: 0
 --- !u!1 &2753755692860179319
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2753755692860179318
 Transform:
   m_ObjectHideFlags: 0
@@ -707,7 +682,6 @@ GameObject:
   - component: {fileID: 5960619842853978449}
   - component: {fileID: 6270999164504429229}
   - component: {fileID: 4766569644916506250}
-  - component: {fileID: 2091072431786215931}
   m_Layer: 0
   m_Name: Tank3
   m_TagString: Untagged
@@ -774,20 +748,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &2091072431786215931
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3313974144745671963}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3556510416842390254
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +759,6 @@ GameObject:
   - component: {fileID: 8385799683272108707}
   - component: {fileID: 2643463899877866648}
   - component: {fileID: 4511488281080312498}
-  - component: {fileID: 941925975027381417}
   m_Layer: 0
   m_Name: Tank1
   m_TagString: Untagged
@@ -866,20 +825,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &941925975027381417
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3556510416842390254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4583744392252360001
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +836,6 @@ GameObject:
   - component: {fileID: 7490935466831329474}
   - component: {fileID: 1568421824924706467}
   - component: {fileID: 5372924065010637120}
-  - component: {fileID: 7552874175495466700}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -958,20 +902,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7552874175495466700
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4583744392252360001}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4988738184864340679
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +913,6 @@ GameObject:
   - component: {fileID: 2573500228140335239}
   - component: {fileID: 1649517705864995236}
   - component: {fileID: 4046603662055368237}
-  - component: {fileID: 853065892162741239}
   m_Layer: 0
   m_Name: Grip1
   m_TagString: Untagged
@@ -1050,20 +979,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &853065892162741239
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4988738184864340679}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &6640993966898262374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +990,6 @@ GameObject:
   - component: {fileID: 4975549794527393282}
   - component: {fileID: 2399833554578087465}
   - component: {fileID: 918147520465207165}
-  - component: {fileID: 7414960589858840701}
   m_Layer: 0
   m_Name: Tank2
   m_TagString: Untagged
@@ -1142,17 +1056,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &7414960589858840701
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6640993966898262374}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

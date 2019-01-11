@@ -400,7 +400,7 @@ public class InputManager : MonoBehaviour {
                     actions.jump.ElementAt(i).Value();
                 }
             }
-            if (Input.GetKeyDown(keybindings[Keys.mouse0]))
+            if (Input.GetKey(keybindings[Keys.mouse0]))
             {
                 CreateData(Keys.mouse0);
                 for (int i = actions.mouse0.Count - 1; i >= 0; i--)

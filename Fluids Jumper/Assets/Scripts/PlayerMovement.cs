@@ -18,12 +18,17 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 cameraOffset;
     public float movementSpeed;
     public float jumpForce;
-    public float turnSpeed; 
+    public float turnSpeed;
+    public bool view;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamTransform.position = myTransform.position;
+
+        view = true;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         var temp = GetInstanceID();
 
@@ -33,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         inputManager.RegisterAction(InputManager.Keys.right, () => Move(inputManager.data), temp);
 
         inputManager.RegisterAction(InputManager.Keys.jump, Jump, temp);
+        inputManager.RegisterAction(InputManager.Keys.escape, ToggleView, temp);
     }
     
     public void Move(InputManager.CallbackData data)
@@ -47,15 +53,25 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(new Vector3(0, 10f, 0));
     }
 
+    public void ToggleView()
+    {
+        view = !view;
+        Cursor.visible = !view;
+        Cursor.lockState = view ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+
     private void Update()
     {
-        float y = Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
-        float x = Input.GetAxis("Mouse Y") * turnSpeed * Time.deltaTime;
+        if (view)
+        {
+            float y = Input.GetAxis("Mouse X") * turnSpeed * Time.deltaTime;
+            float x = Input.GetAxis("Mouse Y") * turnSpeed * Time.deltaTime;
 
-        myTransform.Rotate(0f, y, 0f);
-        mainCamTransform.Rotate(-x, 0f, 0f);
+            myTransform.Rotate(0f, y, 0f);
+            mainCamTransform.Rotate(-x, 0f, 0f);
 
-        cameraOffset = Quaternion.AngleAxis(y, Vector3.up) * cameraOffset;
-        mainCamTransform.position = myTransform.position + cameraOffset;
+            cameraOffset = Quaternion.AngleAxis(y, Vector3.up) * cameraOffset;
+            mainCamTransform.position = myTransform.position + cameraOffset;
+        }
     }
 }
