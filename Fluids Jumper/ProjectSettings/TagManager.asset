@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Projectile
   - Fluid
+  - Wood
   layers:
   - Default
   - TransparentFX
