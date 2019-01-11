@@ -12,6 +12,8 @@ public class Fluid : MonoBehaviour
     };
 
     public FluidType fluid;
+    //public Cloth cloth;
+    public double time;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +24,11 @@ public class Fluid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
+        float sine = Mathf.Sin((float)time);
+        //cloth.randomAcceleration = new Vector3(0, sine * 5, 0);
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Projectile")
