@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour {
         left,
         right,
         jump,
+        sprint,
+        sprintUp,
         mouse0,
         mouse1,
         toggleView,
@@ -47,6 +49,8 @@ public class InputManager : MonoBehaviour {
         public Dictionary<int, Action> left;
         public Dictionary<int, Action> right;
         public Dictionary<int, Action> jump;
+        public Dictionary<int, Action> sprint;
+        public Dictionary<int, Action> sprintUp;
         public Dictionary<int, Action> mouse0;
         public Dictionary<int, Action> mouse1;
         public Dictionary<int, Action> toggleView;
@@ -100,6 +104,8 @@ public class InputManager : MonoBehaviour {
         keybindings.Add(Keys.left, KeyCode.A);
         keybindings.Add(Keys.right, KeyCode.D);
         keybindings.Add(Keys.jump, KeyCode.Space);
+        keybindings.Add(Keys.sprint, KeyCode.LeftShift);
+        keybindings.Add(Keys.sprintUp, KeyCode.LeftShift);
         keybindings.Add(Keys.mouse0, KeyCode.Mouse0);
         keybindings.Add(Keys.mouse1, KeyCode.Mouse1);
         keybindings.Add(Keys.toggleView, KeyCode.Z);
@@ -145,6 +151,12 @@ public class InputManager : MonoBehaviour {
                 break;
             case Keys.jump:
                 actions.jump.Add(id, action);
+                break;
+            case Keys.sprint:
+                actions.sprint.Add(id, action);
+                break;
+            case Keys.sprintUp:
+                actions.sprintUp.Add(id, action);
                 break;
             case Keys.mouse0:
                 actions.mouse0.Add(id, action);
@@ -227,6 +239,12 @@ public class InputManager : MonoBehaviour {
                 return true;
             case Keys.jump:
                 actions.jump.Remove(id);
+                return true;
+            case Keys.sprint:
+                actions.sprint.Remove(id);
+                return true;
+            case Keys.sprintUp:
+                actions.sprintUp.Remove(id);
                 return true;
             case Keys.mouse0:
                 actions.mouse0.Remove(id);
@@ -398,6 +416,22 @@ public class InputManager : MonoBehaviour {
                 for (int i = actions.jump.Count - 1; i >= 0; i--)
                 {
                     actions.jump.ElementAt(i).Value();
+                }
+            }
+            if (Input.GetKeyDown(keybindings[Keys.sprint]))
+            {
+                CreateData(Keys.jump);
+                for (int i = actions.jump.Count - 1; i >= 0; i--)
+                {
+                    actions.sprint.ElementAt(i).Value();
+                }
+            }
+            if (Input.GetKeyUp(keybindings[Keys.sprintUp]))
+            {
+                CreateData(Keys.jump);
+                for (int i = actions.sprintUp.Count - 1; i >= 0; i--)
+                {
+                    actions.sprintUp.ElementAt(i).Value();
                 }
             }
             if (Input.GetKey(keybindings[Keys.mouse0]))

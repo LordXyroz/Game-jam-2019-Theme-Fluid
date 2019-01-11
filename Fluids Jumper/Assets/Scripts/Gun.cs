@@ -13,6 +13,7 @@ public class Gun : MonoBehaviour
 
     [Header("Objects")]
     public GameObject player;
+    public PlayerMovement playerMovement;
 
     [Header("Variables")]
     public float velocity;
@@ -33,7 +34,7 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        if (counter >= cooldown)
+        if (counter >= cooldown && !playerMovement.sprint)
         {
             var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);

@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11951799549961449}
-  m_LocalRotation: {x: -0.24099034, y: -0, z: -0, w: 0.9705275}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7490935466831329474}
@@ -52,7 +52,7 @@ MonoBehaviour:
     type: 3}
   projectileSpawn: {fileID: 2468260891475889561}
   player: {fileID: 2753755692739003212}
-  camera: {fileID: 2753755691375084982}
+  playerMovement: {fileID: 2753755692739003208}
   velocity: 10
   cooldown: 0.25
   counter: 0
@@ -299,14 +299,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2753755691375084969}
-  m_LocalRotation: {x: 0.24099034, y: -0, z: -0, w: 0.9705275}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4864608460921107318}
   m_Father: {fileID: 2753755692739003210}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 27.89, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2753755691375084983
 Camera:
   m_ObjectHideFlags: 0
@@ -543,7 +543,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2753755692739003209
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -573,11 +573,13 @@ MonoBehaviour:
   myTransform: {fileID: 2753755692739003210}
   mainCamTransform: {fileID: 2753755691375084982}
   rb: {fileID: 2753755692739003211}
+  gun: {fileID: 11951799549961449}
   cameraOffset: {x: 0, y: 1, z: 0}
   movementSpeed: 5
-  jumpForce: 20
+  jumpForce: 80
   turnSpeed: 90
   view: 0
+  sprint: 0
 --- !u!1 &2753755692860179319
 GameObject:
   m_ObjectHideFlags: 0
