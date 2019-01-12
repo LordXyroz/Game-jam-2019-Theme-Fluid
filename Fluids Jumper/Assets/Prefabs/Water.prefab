@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 9214085640037673267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2352,12 +2352,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfe356d17955aa45932f17bab560d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamestateManager: {fileID: 0}
   fluid: 0
   collider: {fileID: 9214085640696518363}
   currentHeight: {x: 0, y: 0, z: 0}
   targetHeight: {x: 0, y: 0, z: 0}
   timer: 0
-  heightLimit: 5.2
+  heightLimit: 2
   limitReached: 0
   waterMaterial: {fileID: 2100000, guid: c8196e82d65f45f44a787b26ba44b70e, type: 2}
   gelMaterial: {fileID: 2100000, guid: 6d4ef1aa1f5db8941ba9007c32f56fb3, type: 2}

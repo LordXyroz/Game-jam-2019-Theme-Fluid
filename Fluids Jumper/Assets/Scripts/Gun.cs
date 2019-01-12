@@ -50,35 +50,47 @@ public class Gun : MonoBehaviour
     {
         if (counter >= cooldown && !playerMovement.sprint)
         {
-            switch (fluidSelector.fluidType)
+            RaycastHit hit;
+            if (Physics.Raycast(projectileSpawn.transform.position, transform.forward, out hit))
             {
-                case FluidType.Water:
-                    if (fluidTanks.waterAmount > 0)
+                if (hit.collider.tag == "Fluid")
+                {
+                    if (hit.collider.GetComponent<Fluid>().limitReached)
                     {
-                        fluidTanks.waterAmount -= 1;
-                        break;
+                        return;
                     }
-                    else return;
-                case FluidType.Gel:
-                    if (fluidTanks.gelAmount > 0)
-                    {
-                        fluidTanks.gelAmount -= 1;
-                        break;
-                    }
-                    else return;
-                case FluidType.SuperFluid:
-                    if (fluidTanks.superFluidAmount > 0)
-                    {
-                        fluidTanks.superFluidAmount -= 1;
-                        break;
-                    }
-                    else return;
-            }
+                }
 
-            var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
-            
-            counter = 0f;
+                switch (fluidSelector.fluidType)
+                {
+                    case FluidType.Water:
+                        if (fluidTanks.waterAmount > 0)
+                        {
+                            fluidTanks.waterAmount -= 1;
+                            break;
+                        }
+                        else return;
+                    case FluidType.Gel:
+                        if (fluidTanks.gelAmount > 0)
+                        {
+                            fluidTanks.gelAmount -= 1;
+                            break;
+                        }
+                        else return;
+                    case FluidType.SuperFluid:
+                        if (fluidTanks.superFluidAmount > 0)
+                        {
+                            fluidTanks.superFluidAmount -= 1;
+                            break;
+                        }
+                        else return;
+                }
+
+                var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
+                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
+
+                counter = 0f;
+            }
         }
     }
 

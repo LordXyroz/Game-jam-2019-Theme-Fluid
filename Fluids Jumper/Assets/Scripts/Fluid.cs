@@ -12,6 +12,9 @@ public enum FluidType
 
 public class Fluid : MonoBehaviour
 {
+    [Header("Managers")]
+    public GamestateManager gamestateManager;
+
     [Header("Main")]
     public FluidType fluid;
     public SphereCollider collider;
@@ -56,7 +59,7 @@ public class Fluid : MonoBehaviour
     {
         if (timer <= 0f)
         {
-            collider.center = new Vector3(0f, 5f, 0f);
+            collider.center = new Vector3(0f, -5f, 0f);
         }
         else
             timer -= Time.deltaTime;
@@ -104,6 +107,10 @@ public class Fluid : MonoBehaviour
             }
 
             
+        }
+        if (other.gameObject.tag == "PlayerTrigger")
+        {
+            gamestateManager.gameover = true;
         }
     }
 

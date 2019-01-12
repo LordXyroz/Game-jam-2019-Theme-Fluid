@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("InputManager")]
+    [Header("Managers")]
     public InputManager inputManager;
 
     [Header("Transforms")]

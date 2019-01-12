@@ -9,6 +9,7 @@ TagManager:
   - Wood
   - Heavy
   - SuperHeavy
+  - PlayerTrigger
   layers:
   - Default
   - TransparentFX
