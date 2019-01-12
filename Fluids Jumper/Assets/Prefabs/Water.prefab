@@ -2354,9 +2354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fluid: 0
   collider: {fileID: 9214085640696518363}
-  timer: 0
   currentHeight: {x: 0, y: 0, z: 0}
   targetHeight: {x: 0, y: 0, z: 0}
+  timer: 0
   heightLimit: 5.2
   limitReached: 0
   waterMaterial: {fileID: 2100000, guid: c8196e82d65f45f44a787b26ba44b70e, type: 2}

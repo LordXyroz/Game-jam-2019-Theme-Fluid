@@ -141,6 +141,8 @@ public class Gun : MonoBehaviour
             }
 
         }
+        else
+            StopAlternateFire();
     }
 
     public void StopAlternateFire()
