@@ -946,10 +946,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4e86a140251b14cb8caed90d4fa053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fluidSelector: {fileID: 0}
+  fluidType: 0
   duration: 5
   lifeTime: 0
-  fluidType: 0
-  fluidSelector: {fileID: 0}
   myMaterial: {fileID: 0}
   waterMaterial: {fileID: 2100000, guid: c8196e82d65f45f44a787b26ba44b70e, type: 2}
   gelMaterial: {fileID: 2100000, guid: 6d4ef1aa1f5db8941ba9007c32f56fb3, type: 2}

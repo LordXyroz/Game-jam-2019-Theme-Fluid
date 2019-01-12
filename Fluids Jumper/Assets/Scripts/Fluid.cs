@@ -61,6 +61,12 @@ public class Fluid : MonoBehaviour
         else
             timer -= Time.deltaTime;
 
+        if (targetHeight.y >= heightLimit)
+            limitReached = true;
+        else
+            limitReached = false;
+
+
         transform.position = Vector3.Lerp(currentHeight, targetHeight, Time.deltaTime * 2f);
         currentHeight = transform.position;
     }

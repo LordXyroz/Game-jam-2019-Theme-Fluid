@@ -31,6 +31,10 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fluidTanks.waterAmount = fluidTanks.maxStorage;
+        fluidTanks.gelAmount = fluidTanks.maxStorage;
+        fluidTanks.superFluidAmount = fluidTanks.maxStorage;
+
         inputManager.RegisterAction(InputManager.Keys.mouse0, Fire, GetInstanceID());
         inputManager.RegisterAction(InputManager.Keys.mouse1, AlternateFire, GetInstanceID());
         inputManager.RegisterAction(InputManager.Keys.mouse1Up, StopAlternateFire, GetInstanceID());
@@ -46,22 +50,33 @@ public class Gun : MonoBehaviour
     {
         if (counter >= cooldown && !playerMovement.sprint)
         {
-            var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
-
             switch (fluidSelector.fluidType)
             {
                 case FluidType.Water:
-                    fluidTanks.waterAmount -= 1;
-                    break;
+                    if (fluidTanks.waterAmount > 0)
+                    {
+                        fluidTanks.waterAmount -= 1;
+                        break;
+                    }
+                    else return;
                 case FluidType.Gel:
-                    fluidTanks.gelAmount -= 1;
-                    break;
+                    if (fluidTanks.gelAmount > 0)
+                    {
+                        fluidTanks.gelAmount -= 1;
+                        break;
+                    }
+                    else return;
                 case FluidType.SuperFluid:
-                    fluidTanks.superFluidAmount -= 1;
-                    break;
+                    if (fluidTanks.superFluidAmount > 0)
+                    {
+                        fluidTanks.superFluidAmount -= 1;
+                        break;
+                    }
+                    else return;
             }
 
+            var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
             
             counter = 0f;
         }
