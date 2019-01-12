@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4864608460921107318}
   - component: {fileID: 555587507}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,12 @@ MonoBehaviour:
   projectileSpawn: {fileID: 2468260891475889561}
   player: {fileID: 2753755692739003212}
   playerMovement: {fileID: 2753755692739003208}
+  particleSystem: {fileID: 0}
+  fluidSelector: {fileID: 9145259887704573064}
+  fluidTanks: {fileID: 11400000, guid: 14787245679a85946a7bb9aa4e6bb40b, type: 2}
+  waterMaterial: {fileID: 2100000, guid: c8196e82d65f45f44a787b26ba44b70e, type: 2}
+  gelMaterial: {fileID: 2100000, guid: 6d4ef1aa1f5db8941ba9007c32f56fb3, type: 2}
+  superFluidMaterial: {fileID: 2100000, guid: afc082200fd009c4092edbbaecefce0f, type: 2}
   velocity: 10
   cooldown: 0.25
   counter: 0
@@ -67,7 +73,7 @@ GameObject:
   - component: {fileID: 8696892037908417988}
   - component: {fileID: 4483661497983954990}
   - component: {fileID: 8368138188809629813}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +150,7 @@ GameObject:
   - component: {fileID: 4880971584112859638}
   - component: {fileID: 8588112156314058252}
   - component: {fileID: 451733407502226739}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grip2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3852526793032927217}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tanks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5296496517269387181}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ProjectileSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +291,7 @@ GameObject:
   - component: {fileID: 2753755691375084982}
   - component: {fileID: 2753755691375084983}
   - component: {fileID: 2753755691375084968}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -367,7 +373,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2753755691852893164}
   - component: {fileID: 2753755691852893165}
-  m_Layer: 0
+  - component: {fileID: 9145259887704573064}
+  m_Layer: 9
   m_Name: Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,6 +407,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3a3ea1503a84342a45f1e3ccf31aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9145259887704573064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753755691852893166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f501131f901b4d7468a88250bc304eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputManager: {fileID: 2753755691852893165}
+  fluidType: 0
 --- !u!1 &2753755692439032603
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +433,7 @@ GameObject:
   - component: {fileID: 2753755692439032551}
   - component: {fileID: 2753755692439032600}
   - component: {fileID: 2753755692439032601}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,9 +524,9 @@ GameObject:
   - component: {fileID: 2753755692739003211}
   - component: {fileID: 2753755692739003209}
   - component: {fileID: 2753755692739003208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -592,7 +613,7 @@ GameObject:
   - component: {fileID: 2753755692860179315}
   - component: {fileID: 2753755692860179316}
   - component: {fileID: 2753755692860179317}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +705,7 @@ GameObject:
   - component: {fileID: 5960619842853978449}
   - component: {fileID: 6270999164504429229}
   - component: {fileID: 4766569644916506250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -761,7 +782,7 @@ GameObject:
   - component: {fileID: 8385799683272108707}
   - component: {fileID: 2643463899877866648}
   - component: {fileID: 4511488281080312498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,7 +859,7 @@ GameObject:
   - component: {fileID: 7490935466831329474}
   - component: {fileID: 1568421824924706467}
   - component: {fileID: 5372924065010637120}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +936,7 @@ GameObject:
   - component: {fileID: 2573500228140335239}
   - component: {fileID: 1649517705864995236}
   - component: {fileID: 4046603662055368237}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grip1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +1013,7 @@ GameObject:
   - component: {fileID: 4975549794527393282}
   - component: {fileID: 2399833554578087465}
   - component: {fileID: 918147520465207165}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tank2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

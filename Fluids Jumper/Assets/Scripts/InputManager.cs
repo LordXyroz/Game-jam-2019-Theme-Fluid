@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour {
         sprintUp,
         mouse0,
         mouse1,
+        mouse1Up,
         toggleView,
         movement,
         interract,
@@ -53,6 +54,7 @@ public class InputManager : MonoBehaviour {
         public Dictionary<int, Action> sprintUp;
         public Dictionary<int, Action> mouse0;
         public Dictionary<int, Action> mouse1;
+        public Dictionary<int, Action> mouse1Up;
         public Dictionary<int, Action> toggleView;
         public Dictionary<int, Action> movement;
         public Dictionary<int, Action> interract;
@@ -108,6 +110,7 @@ public class InputManager : MonoBehaviour {
         keybindings.Add(Keys.sprintUp, KeyCode.LeftShift);
         keybindings.Add(Keys.mouse0, KeyCode.Mouse0);
         keybindings.Add(Keys.mouse1, KeyCode.Mouse1);
+        keybindings.Add(Keys.mouse1Up, KeyCode.Mouse1);
         keybindings.Add(Keys.toggleView, KeyCode.Z);
         keybindings.Add(Keys.interract, KeyCode.F);
         keybindings.Add(Keys.inventory, KeyCode.I);
@@ -163,6 +166,9 @@ public class InputManager : MonoBehaviour {
                 break;
             case Keys.mouse1:
                 actions.mouse1.Add(id, action);
+                break;
+            case Keys.mouse1Up:
+                actions.mouse1Up.Add(id, action);
                 break;
             case Keys.toggleView:
                 actions.toggleView.Add(id, action);
@@ -251,6 +257,9 @@ public class InputManager : MonoBehaviour {
                 return true;
             case Keys.mouse1:
                 actions.mouse1.Remove(id);
+                return true;
+            case Keys.mouse1Up:
+                actions.mouse1Up.Remove(id);
                 return true;
             case Keys.toggleView:
                 actions.toggleView.Remove(id);
@@ -442,12 +451,20 @@ public class InputManager : MonoBehaviour {
                     actions.mouse0.ElementAt(i).Value();
                 }
             }
-            if (Input.GetKeyDown(keybindings[Keys.mouse1]))
+            if (Input.GetKey(keybindings[Keys.mouse1]))
             {
                 CreateData(Keys.mouse1);
                 for (int i = actions.mouse1.Count - 1; i >= 0; i--)
                 {
                     actions.mouse1.ElementAt(i).Value();
+                }
+            }
+            if (Input.GetKeyUp(keybindings[Keys.mouse1]))
+            {
+                CreateData(Keys.mouse1);
+                for (int i = actions.mouse1Up.Count - 1; i >= 0; i--)
+                {
+                    actions.mouse1Up.ElementAt(i).Value();
                 }
             }
             if (Input.GetKeyDown(keybindings[Keys.toggleView]))

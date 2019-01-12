@@ -14,6 +14,14 @@ public class Gun : MonoBehaviour
     [Header("Objects")]
     public GameObject player;
     public PlayerMovement playerMovement;
+    public ParticleSystem particleSystem;
+    public FluidSelector fluidSelector;
+    public FluidTanks fluidTanks;
+    
+    [Header("Materials")]
+    public Material waterMaterial;
+    public Material gelMaterial;
+    public Material superFluidMaterial;
 
     [Header("Variables")]
     public float velocity;
@@ -24,6 +32,8 @@ public class Gun : MonoBehaviour
     void Start()
     {
         inputManager.RegisterAction(InputManager.Keys.mouse0, Fire, GetInstanceID());
+        inputManager.RegisterAction(InputManager.Keys.mouse1, AlternateFire, GetInstanceID());
+        inputManager.RegisterAction(InputManager.Keys.mouse1Up, StopAlternateFire, GetInstanceID());
     }
 
     public void Update()
@@ -38,7 +48,88 @@ public class Gun : MonoBehaviour
         {
             var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
+
+            switch (fluidSelector.fluidType)
+            {
+                case FluidType.Water:
+                    fluidTanks.waterAmount -= 1;
+                    break;
+                case FluidType.Gel:
+                    fluidTanks.gelAmount -= 1;
+                    break;
+                case FluidType.SuperFluid:
+                    fluidTanks.superFluidAmount -= 1;
+                    break;
+            }
+
+            
             counter = 0f;
         }
+    }
+
+    public void AlternateFire()
+    {
+        if (!playerMovement.sprint)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(projectileSpawn.transform.position, transform.forward, out hit))
+            {
+                if (hit.collider.gameObject.tag == "Fluid" && counter >= cooldown)
+                {
+                    counter = 0f;
+
+                    if (hit.collider.gameObject.GetComponent<Fluid>().targetHeight.y >= 0.0f)
+                    {
+                        if (hit.collider.gameObject.GetComponent<Fluid>().fluid == FluidType.Water && fluidTanks.waterAmount >= fluidTanks.maxStorage)
+                            return;
+                        if (hit.collider.gameObject.GetComponent<Fluid>().fluid == FluidType.Gel && fluidTanks.gelAmount >= fluidTanks.maxStorage)
+                            return;
+                        if (hit.collider.gameObject.GetComponent<Fluid>().fluid == FluidType.SuperFluid && fluidTanks.superFluidAmount >= fluidTanks.maxStorage)
+                            return;
+
+                        hit.collider.gameObject.GetComponent<Fluid>().targetHeight.y -= 0.1f;
+                        particleSystem.transform.position = hit.point;
+
+                        particleSystem.transform.forward = projectileSpawn.transform.position - particleSystem.transform.position;
+
+                        var renderer = particleSystem.GetComponent<ParticleSystemRenderer>();
+
+                        switch (hit.collider.gameObject.GetComponent<Fluid>().fluid)
+                        {
+                            case FluidType.Water:
+                                renderer.material = waterMaterial;
+                                renderer.trailMaterial = waterMaterial;
+                                fluidTanks.waterAmount += 1;
+                                break;
+                            case FluidType.Gel:
+                                renderer.material = gelMaterial;
+                                renderer.trailMaterial = gelMaterial;
+                                fluidTanks.gelAmount += 1;
+                                break;
+                            case FluidType.SuperFluid:
+                                renderer.material = superFluidMaterial;
+                                renderer.trailMaterial = superFluidMaterial;
+                                fluidTanks.superFluidAmount += 1;
+                                break;
+                        }
+
+                        if (particleSystem.isStopped)
+                            particleSystem.Play();
+
+                    }
+                    else
+                    {
+                        hit.collider.gameObject.GetComponent<Fluid>().fluid = FluidType.None;
+                        particleSystem.Stop();
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void StopAlternateFire()
+    {
+        particleSystem.Stop();
     }
 }

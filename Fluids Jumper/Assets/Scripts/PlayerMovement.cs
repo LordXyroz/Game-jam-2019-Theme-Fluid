@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     {
         view = !view;
         Cursor.visible = !view;
-        Cursor.lockState = view ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.lockState = view ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     public void Sprint()

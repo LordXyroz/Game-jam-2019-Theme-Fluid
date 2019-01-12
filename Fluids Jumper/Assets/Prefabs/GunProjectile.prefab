@@ -103,8 +103,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0010187626, y: 0.0003376007, z: -0.0006942749}
-    m_Extent: {x: 0.28320312, y: 0.28335953, z: 0.28313637}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0.5}
   m_DirtyAABB: 0
 --- !u!183 &6220624238150441374
 Cloth:
@@ -948,3 +948,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 5
   lifeTime: 0
+  fluidType: 0
+  fluidSelector: {fileID: 0}
+  myMaterial: {fileID: 0}
+  waterMaterial: {fileID: 2100000, guid: c8196e82d65f45f44a787b26ba44b70e, type: 2}
+  gelMaterial: {fileID: 2100000, guid: 6d4ef1aa1f5db8941ba9007c32f56fb3, type: 2}
+  superFluidMaterial: {fileID: 2100000, guid: afc082200fd009c4092edbbaecefce0f, type: 2}
