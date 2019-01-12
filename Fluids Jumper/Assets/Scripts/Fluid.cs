@@ -36,7 +36,6 @@ public class Fluid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fluid = FluidType.None;
         currentHeight = transform.position;
         targetHeight = currentHeight;
 
@@ -110,7 +109,7 @@ public class Fluid : MonoBehaviour
         }
         if (other.gameObject.tag == "PlayerTrigger")
         {
-            gamestateManager.gameover = true;
+            gamestateManager.dead = true;
         }
     }
 
@@ -121,31 +120,31 @@ public class Fluid : MonoBehaviour
             case FluidType.Water:
                 if (other.gameObject.tag == "Wood")
                 {
-                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.5f, other.transform.position.z);
+                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.3f, other.transform.position.z);
                 }
                 break;
             case FluidType.Gel:
                 if (other.gameObject.tag == "Wood")
                 {
-                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.5f, other.transform.position.z);
+                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.3f, other.transform.position.z);
                 }
                 if (other.gameObject.tag == "Heavy")
                 {
-                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.5f, other.transform.position.z);
+                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.3f, other.transform.position.z);
                 }
                 break;
             case FluidType.SuperFluid:
                 if (other.gameObject.tag == "Wood")
                 {
-                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.5f, other.transform.position.z);
+                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.3f, other.transform.position.z);
                 }
                 if (other.gameObject.tag == "Heavy")
                 {
-                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.5f, other.transform.position.z);
+                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.3f, other.transform.position.z);
                 }
                 if (other.gameObject.tag == "SuperHeavy")
                 {
-                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.5f, other.transform.position.z);
+                    other.transform.position = new Vector3(other.transform.position.x, transform.position.y - 0.3f, other.transform.position.z);
                 }
                 break;
         }

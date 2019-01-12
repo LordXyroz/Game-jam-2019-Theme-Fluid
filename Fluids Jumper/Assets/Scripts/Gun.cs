@@ -27,6 +27,7 @@ public class Gun : MonoBehaviour
     public float velocity;
     public float cooldown;
     public float counter;
+    public bool charging;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,7 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        if (counter >= cooldown && !playerMovement.sprint)
+        if (counter >= cooldown && !playerMovement.sprint && !playerMovement.gunDown)
         {
             RaycastHit hit;
             if (Physics.Raycast(projectileSpawn.transform.position, transform.forward, out hit))
@@ -60,43 +61,43 @@ public class Gun : MonoBehaviour
                         return;
                     }
                 }
-
-                switch (fluidSelector.fluidType)
-                {
-                    case FluidType.Water:
-                        if (fluidTanks.waterAmount > 0)
-                        {
-                            fluidTanks.waterAmount -= 1;
-                            break;
-                        }
-                        else return;
-                    case FluidType.Gel:
-                        if (fluidTanks.gelAmount > 0)
-                        {
-                            fluidTanks.gelAmount -= 1;
-                            break;
-                        }
-                        else return;
-                    case FluidType.SuperFluid:
-                        if (fluidTanks.superFluidAmount > 0)
-                        {
-                            fluidTanks.superFluidAmount -= 1;
-                            break;
-                        }
-                        else return;
-                }
-
-                var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
-
-                counter = 0f;
             }
+            switch (fluidSelector.fluidType)
+            {
+                case FluidType.Water:
+                    if (fluidTanks.waterAmount > 0)
+                    {
+                        fluidTanks.waterAmount -= 1;
+                        break;
+                    }
+                    else return;
+                case FluidType.Gel:
+                    if (fluidTanks.gelAmount > 0)
+                    {
+                        fluidTanks.gelAmount -= 1;
+                        break;
+                    }
+                    else return;
+                case FluidType.SuperFluid:
+                    if (fluidTanks.superFluidAmount > 0)
+                    {
+                        fluidTanks.superFluidAmount -= 1;
+                        break;
+                    }
+                    else return;
+            }
+
+            var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
+
+            counter = 0f;
+            
         }
     }
 
     public void AlternateFire()
     {
-        if (!playerMovement.sprint)
+        if (!playerMovement.sprint && !playerMovement.gunDown)
         {
             RaycastHit hit;
             if (Physics.Raycast(projectileSpawn.transform.position, transform.forward, out hit))

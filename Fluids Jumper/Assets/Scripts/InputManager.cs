@@ -427,7 +427,7 @@ public class InputManager : MonoBehaviour {
                     actions.jump.ElementAt(i).Value();
                 }
             }
-            if (Input.GetKeyDown(keybindings[Keys.sprint]))
+            if (Input.GetKey(keybindings[Keys.sprint]))
             {
                 CreateData(Keys.jump);
                 for (int i = actions.jump.Count - 1; i >= 0; i--)

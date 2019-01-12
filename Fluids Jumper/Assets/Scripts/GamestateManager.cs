@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class GamestateManager : MonoBehaviour
 {
-
-    public bool gameover = false;
-
+    [Header("GameObjects")]
     public GameObject gameoverText;
+    public GameObject player;
+    public GameObject spawnPoint;
+
+    [Header("Variables")]
+    public bool dead = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +22,10 @@ public class GamestateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameoverText.SetActive(gameover);
+        if (dead)
+        {
+            player.transform.position = spawnPoint.transform.position;
+            dead = false; //duuuuuhhhhhh
+        }
     }
 }

@@ -2353,7 +2353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamestateManager: {fileID: 0}
-  fluid: 0
+  fluid: 3
   collider: {fileID: 9214085640696518363}
   currentHeight: {x: 0, y: 0, z: 0}
   targetHeight: {x: 0, y: 0, z: 0}
