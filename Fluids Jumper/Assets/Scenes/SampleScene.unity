@@ -375,6 +375,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &485691753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7588471878183613143, guid: 9280f7b5f093ee845bf553bf7610d1dc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2520915472143002408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &668390122
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfe356d17955aa45932f17bab560d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamestateManager: {fileID: 1857690295}
   fluid: 1
   collider: {fileID: 1293219566}
   currentHeight: {x: 0, y: 0, z: 0}
@@ -3294,6 +3301,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1857690295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1399534621194914337, guid: d4bc96f7656b5324ba8c52820dee9d8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2753755691150815207}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6207397556dd10e4e80c083c57666d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1949316778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,6 +3742,11 @@ PrefabInstance:
       propertyPath: superFluidTankBG
       value: 
       objectReference: {fileID: 1515291661}
+    - target: {fileID: 1399534621194914337, guid: d4bc96f7656b5324ba8c52820dee9d8b,
+        type: 3}
+      propertyPath: gameoverText
+      value: 
+      objectReference: {fileID: 485691753}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4bc96f7656b5324ba8c52820dee9d8b, type: 3}
 --- !u!1001 &3939208050307158625
@@ -3999,5 +4023,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9214085640038036755, guid: 95bc6026b61275642acb5ffd29548bb1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214085640038036755, guid: 95bc6026b61275642acb5ffd29548bb1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214085640696518358, guid: 95bc6026b61275642acb5ffd29548bb1,
+        type: 3}
+      propertyPath: gamestateManager
+      value: 
+      objectReference: {fileID: 1857690295}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95bc6026b61275642acb5ffd29548bb1, type: 3}

@@ -105,7 +105,7 @@ public class Gun : MonoBehaviour
                 {
                     counter = 0f;
 
-                    if (hit.collider.gameObject.GetComponent<Fluid>().targetHeight.y >= 0.0f)
+                    if (hit.collider.gameObject.GetComponent<Fluid>().targetHeight.y >= -0.05f)
                     {
                         if (hit.collider.gameObject.GetComponent<Fluid>().fluid == FluidType.Water && fluidTanks.waterAmount >= fluidTanks.maxStorage)
                             return;

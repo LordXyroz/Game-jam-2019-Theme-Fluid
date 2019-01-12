@@ -45,14 +45,20 @@ public class PlayerMovement : MonoBehaviour
         inputManager.RegisterAction(InputManager.Keys.escape, ToggleView, temp);
         inputManager.RegisterAction(InputManager.Keys.sprint, Sprint, temp);
         inputManager.RegisterAction(InputManager.Keys.sprintUp, ReleaseSprint, temp);
+        inputManager.RegisterAction(InputManager.Keys.stopMovement, StopMove, temp);
 
     }
     
     public void Move(InputManager.CallbackData data)
     {
         var moveDir = Time.deltaTime * movementSpeed * myTransform.forward * data.xAxis + Time.deltaTime * movementSpeed * myTransform.right * data.yAxis;
+        
+        rb.velocity = moveDir * ((sprint) ? 100f : 50f) + new Vector3(0f, rb.velocity.y, 0f);
+    }
 
-        myTransform.position += moveDir * ((sprint) ? 2f : 1f);
+    public void StopMove()
+    {
+        rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
     }
 
     public void Jump()

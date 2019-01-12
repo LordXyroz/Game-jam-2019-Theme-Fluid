@@ -59,7 +59,7 @@ public class Fluid : MonoBehaviour
     {
         if (timer <= 0f)
         {
-            collider.center = new Vector3(0f, -5f, 0f);
+            collider.center = new Vector3(0f, 5f, 0f);
         }
         else
             timer -= Time.deltaTime;
