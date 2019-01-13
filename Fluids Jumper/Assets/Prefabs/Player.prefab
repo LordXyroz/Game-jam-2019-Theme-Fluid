@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 2753755691852893165}
+  soundManager: {fileID: 0}
   projectile: {fileID: 6220624238150441375, guid: c85e401b674d15740918a5544c126bf9,
     type: 3}
   projectileSpawn: {fileID: 2468260891475889561}
@@ -59,6 +60,10 @@ MonoBehaviour:
   waterMaterial: {fileID: 2100000, guid: a6bd1d9fe00287142ad80877d5b5c5f4, type: 2}
   gelMaterial: {fileID: 2100000, guid: 93fc96c417408644ead58c0c97e287a1, type: 2}
   superFluidMaterial: {fileID: 2100000, guid: 531d151ad71cd164f8ab1e8c5d2a37dd, type: 2}
+  shootEFX: {fileID: 8300000, guid: a9104404d00d3bc4fa88f26dbe56292c, type: 3}
+  suck1EFX: {fileID: 8300000, guid: c1e704838904de34ea5f4508dcb3b04a, type: 3}
+  suck2EFX: {fileID: 8300000, guid: 396ba8b23e15b6f4fa4d66bc342b9c91, type: 3}
+  suck3EFX: {fileID: 8300000, guid: 8b66cb9c28b9d3e4fbd61cf618661e65, type: 3}
   velocity: 10
   cooldown: 0.25
   counter: 0
@@ -439,10 +444,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6207397556dd10e4e80c083c57666d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameoverText: {fileID: 0}
+  soundManager: {fileID: 0}
+  inputManager: {fileID: 2753755691852893165}
+  dialogManager: {fileID: 1035605048}
+  hud: {fileID: 0}
+  pauseMenu: {fileID: 0}
   player: {fileID: 2753755692739003212}
   spawnPoint: {fileID: 0}
+  playerMovement: {fileID: 2753755692739003208}
+  quitLevelButton: {fileID: 0}
+  mainMenuScene: MainMenu
+  bgm: {fileID: 8300000, guid: ff6c3c922c9d7d2498199c881919f91e, type: 3}
   dead: 0
+  paused: 0
 --- !u!114 &1035605048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +755,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &3313974144745671963
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +997,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7453763318590451845}
   - component: {fileID: 1528592067314127865}
-  - component: {fileID: 401419047767136208}
   m_Layer: 9
   m_Name: UICamera
   m_TagString: MainCamera
@@ -1047,14 +1060,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &401419047767136208
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4979179822869586798}
-  m_Enabled: 1
 --- !u!1 &4988738184864340679
 GameObject:
   m_ObjectHideFlags: 0

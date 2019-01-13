@@ -6,6 +6,7 @@ public class Gun : MonoBehaviour
 {
     [Header("Managers")]
     public InputManager inputManager;
+    public SoundManager soundManager;
 
     [Header("Projectile")]
     public GameObject projectile;
@@ -23,6 +24,12 @@ public class Gun : MonoBehaviour
     public Material gelMaterial;
     public Material superFluidMaterial;
 
+    [Header("Audio")]
+    public AudioClip shootEFX;
+    public AudioClip suck1EFX;
+    public AudioClip suck2EFX;
+    public AudioClip suck3EFX;
+
     [Header("Variables")]
     public float velocity;
     public float cooldown;
@@ -32,6 +39,8 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+        
         fluidTanks.waterAmount = fluidTanks.maxStorage;
         fluidTanks.gelAmount = fluidTanks.maxStorage;
         fluidTanks.superFluidAmount = fluidTanks.maxStorage;
@@ -87,6 +96,7 @@ public class Gun : MonoBehaviour
                     else return;
             }
 
+            soundManager.PlayEfx(shootEFX);
             var bullet = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody>().AddForce(transform.forward * velocity);
 
@@ -143,6 +153,21 @@ public class Gun : MonoBehaviour
 
                         if (particleSystem.isStopped)
                             particleSystem.Play();
+
+                        int rand = Random.Range(0, 3);
+                        Debug.Log(rand);
+                        switch (rand)
+                        {
+                            case 0:
+                                soundManager.PlayEfx(suck1EFX);
+                                break;
+                            case 1:
+                                soundManager.PlayEfx(suck2EFX);
+                                break;
+                            case 2:
+                                soundManager.PlayEfx(suck3EFX);
+                                break;
+                        }
 
                     }
                     else

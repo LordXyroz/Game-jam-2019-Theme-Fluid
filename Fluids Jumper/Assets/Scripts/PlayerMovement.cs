@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         inputManager.RegisterAction(InputManager.Keys.right, () => Move(inputManager.data), temp);
 
         inputManager.RegisterAction(InputManager.Keys.jump, Jump, temp);
-        inputManager.RegisterAction(InputManager.Keys.escape, ToggleView, temp);
+        //inputManager.RegisterAction(InputManager.Keys.escape, ToggleView, temp);
         inputManager.RegisterAction(InputManager.Keys.sprint, Sprint, temp);
         inputManager.RegisterAction(InputManager.Keys.sprintUp, ReleaseSprint, temp);
         inputManager.RegisterAction(InputManager.Keys.stopMovement, StopMove, temp);
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             var moveDir = Time.deltaTime * movementSpeed * myTransform.forward * data.xAxis + Time.deltaTime * movementSpeed * myTransform.right * data.yAxis;
 
-            rb.velocity = moveDir * ((sprint) ? 100f : 50f) + new Vector3(0f, rb.velocity.y, 0f);
+            rb.velocity = moveDir * ((sprint) ? 75f : 50f) + new Vector3(0f, rb.velocity.y, 0f);
         }
         else
             StopMove();
