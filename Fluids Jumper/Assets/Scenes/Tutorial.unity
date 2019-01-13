@@ -3458,7 +3458,7 @@ PrefabInstance:
     - target: {fileID: 9214085640696518358, guid: 95bc6026b61275642acb5ffd29548bb1,
         type: 3}
       propertyPath: fluid
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95bc6026b61275642acb5ffd29548bb1, type: 3}
@@ -4439,7 +4439,7 @@ PrefabInstance:
     - target: {fileID: 9214085640696518358, guid: 95bc6026b61275642acb5ffd29548bb1,
         type: 3}
       propertyPath: fluid
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95bc6026b61275642acb5ffd29548bb1, type: 3}
